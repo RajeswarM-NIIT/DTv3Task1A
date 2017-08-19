@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.mysite1.userbackend1.dao.UserDetailsDAOInt;
 import com.mysite1.userbackend1.model.UserDetails;
 
-@Controller
+
 public class HomeController {
 
-	@Autowired
+	/*@Autowired
 	private UserDetailsDAOInt userDetailsDAOInt;
 	
 	
@@ -27,7 +27,7 @@ public class HomeController {
 		m.addAttribute("userid", userDetails1.getUserid());
 		
 		return "index";
-	}
+	}*/
 	
 	
 }

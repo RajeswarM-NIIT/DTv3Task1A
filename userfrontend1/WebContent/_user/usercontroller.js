@@ -8,8 +8,7 @@ app.controller('UserController',function($scope,$rootScope,$location,$cookieStor
 				console.log('login success');
 				console.log($scope.user.userrole);
 				$scope.user=response.data;
-				$rootScope.presentUser=response.data;
-				
+				$rootScope.presentUser=response.data;				
 				//console.log($rootScope.presentUser.userid);
 				//$scope.message="Successfully Registered";
 				$cookieStore.put('presentUser',$rootScope.presentUser)
@@ -53,6 +52,7 @@ app.controller('UserController',function($scope,$rootScope,$location,$cookieStor
 	
 	
 	$scope.logout=function(){
+		  UserService.logout()	
 		$cookieStore.remove('presentUser')
 		$scope.message="Loged out successfully";
 		$location.path('/login')		

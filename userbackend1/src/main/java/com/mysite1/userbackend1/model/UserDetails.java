@@ -15,6 +15,9 @@ public class UserDetails {
 	private String username;
 	private String userrole;
 	private boolean enabled;
+	private String emailid;
+	private String mobileno;
+	
 	
 	public String getUserid() {
 		return userid;
@@ -45,5 +48,19 @@ public class UserDetails {
 	}
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
+	}
+	public String getEmailid() {
+		return emailid;
+	}
+	public void setEmailid(String emailid) {
+		this.emailid = emailid;
+	}
+	public String getMobileno() {
+		return mobileno;
+	}
+	public void setMobileno(String mobileno) {
+		this.mobileno = mobileno;
 	}	
+	
+	
 }

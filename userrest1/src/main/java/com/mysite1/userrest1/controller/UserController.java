@@ -7,6 +7,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -43,10 +46,11 @@ public class UserController {
 	
 	
 	@RequestMapping(value="/logincheck", method=RequestMethod.POST)
-	public ResponseEntity <?> logincheck(@RequestBody UserDetails userdetails){
+	public ResponseEntity <?> logincheck(@RequestBody UserDetails userdetails,HttpSession session){
 		logger.debug("Entering UserController : Login()");
 		//String userid=userdetails.getUserid();
 		UserDetails validuser = userDetailsDAOInt.loginCheck(userdetails);
+		
 		logger.debug("\n" + userdetails.getUserid());
 		
 		if(validuser==null){
@@ -54,11 +58,18 @@ public class UserController {
 			Error error = new Error(1,"User does not exists");
 			return new ResponseEntity<Error> (error,HttpStatus.UNAUTHORIZED);// 401
 		}
-		else{			
+		else{		
+			session.setAttribute("presentUser", validuser);
 			return new  ResponseEntity<UserDetails> (validuser, HttpStatus.OK);
 		}		
 	}
 	
-	
+	@RequestMapping(value="/logout",method=RequestMethod.POST)
+	public ResponseEntity<?> logout(HttpSession session){	
+		System.out.println("\nLogout in controller");
+		session.removeAttribute("presentUser");		
+		session.invalidate();
+		return new  ResponseEntity<Void> (HttpStatus.OK);		
+	}
 	
 }

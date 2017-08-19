@@ -10,6 +10,9 @@ app.factory('UserService',function($http){
 		return $http.post(BASE_URL+"/register",user);
 	};
 
+	userService.logout=function(user){
+		return $http.post(BASE_URL+"/logout");
+	};
 	
 	
 	return userService;
